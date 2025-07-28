@@ -1,3 +1,4 @@
+import { Button } from '@mui/material'
 import Head from 'next/head'
 
 const IndexPage = () => {
@@ -8,7 +9,7 @@ const IndexPage = () => {
         <meta name="description" content="IndexPage" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>IndexPage</div>
+      <Button variant="contained">Click</Button>
     </>
   )
 }
