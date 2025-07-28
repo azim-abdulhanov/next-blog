@@ -1,16 +1,11 @@
 import { Button } from '@mui/material'
-import Head from 'next/head'
+import Layout from '@/src/layout/layout'
 
 const IndexPage = () => {
   return (
-    <>
-      <Head>
-        <title>IndexPage</title>
-        <meta name="description" content="IndexPage" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
       <Button variant="contained">Click</Button>
-    </>
+    </Layout>
   )
 }
 
