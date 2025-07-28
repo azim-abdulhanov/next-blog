@@ -9,14 +9,16 @@ const Footer = () => {
       component='footer'
       sx={{
         display: 'flex',
-        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        justifyContent: { xs: 'center', sm: 'space-between' },
         alignItems: 'center',
+        gap: '20px',
         padding: '20px',
         backgroundColor: '#1976d2',
         color: '#fff',
       }}
     >
-      <Typography>
+      <Typography sx={{ textAlign: { xs: 'center', sm: 'start' } }}>
         © {new Date().getFullYear()} NextBlog. All rights reserved.
       </Typography>
       <ButtonGroup variant='text' color='inherit'>
