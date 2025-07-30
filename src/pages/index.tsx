@@ -1,10 +1,10 @@
-import { Button } from '@mui/material'
 import Layout from '@/src/layout/layout'
+import { Hero } from '@/src/components'
 
 const IndexPage = () => {
   return (
     <Layout>
-      <Button variant="contained">Click</Button>
+      <Hero />
     </Layout>
   )
 }

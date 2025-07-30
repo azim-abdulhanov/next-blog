@@ -64,13 +64,13 @@ const Navbar = ({ window }: Props) => {
   )
 
   return (
-    <Box component='header' height={'10vh'} sx={{ display: 'flex', alignItems: 'center' }}>
-      <AppBar component='nav'>
+    <Box component='header' sx={{ display: 'flex', alignItems: 'center', height: '60px' }}>
+      <AppBar component='nav' sx={{ height: '60px', backgroundColor: '#141414' }}>
         <Toolbar
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            padding: '0 20px'
+            padding: '20px'
           }}
         >
           <IconButton
@@ -103,26 +103,24 @@ const Navbar = ({ window }: Props) => {
           </Box>
         </Toolbar>
       </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant='temporary'
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: '100%'
-            }
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
+      <Drawer
+        container={container}
+        variant='temporary'
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: '100%'
+          }
+        }}
+      >
+        {drawer}
+      </Drawer>
     </Box>
   )
 }

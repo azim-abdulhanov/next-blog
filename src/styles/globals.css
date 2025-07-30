@@ -1,0 +1,23 @@
+/* Dumaloq navigatsiya tugmalari */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(0, 0, 0, 0.5); /* Tugma fon rangi */
+  color: #fff; /* Tugma matn rangi */
+  width: 40px;
+  height: 40px;
+  border-radius: 100%; /* Dumaloq shakl */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Tugmalarni yuqorida ko'rsatish */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Hover effekti */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px; /* Tugma o'lchami */
+}

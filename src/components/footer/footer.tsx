@@ -14,7 +14,7 @@ const Footer = () => {
         alignItems: 'center',
         gap: '20px',
         padding: '20px',
-        backgroundColor: '#1976d2',
+        backgroundColor: '#141414',
         color: '#fff',
       }}
     >
