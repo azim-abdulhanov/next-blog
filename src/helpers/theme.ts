@@ -11,6 +11,9 @@ const theme = createTheme({
   cssVariables: true,
   typography: {
     fontFamily: roboto.style.fontFamily
+  },
+  palette: {
+    mode: 'dark',
   }
 })
 
