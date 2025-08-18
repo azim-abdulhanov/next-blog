@@ -1,6 +1,5 @@
 import { navItems } from '@/src/config/constants'
 import CloseIcon from '@mui/icons-material/Close'
-import LocalLibraryIcon from '@mui/icons-material/LocalLibrary'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
@@ -16,6 +15,7 @@ import {
   Toolbar,
   Typography
 } from '@mui/material'
+import Link from 'next/link'
 import { useState } from 'react'
 
 interface Props {
@@ -39,13 +39,13 @@ const Navbar = ({ window }: Props) => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          px: '20px'
+          paddingX: '20px',
+          paddingY: '10px'
         }}
       >
-        <Box sx={{ py: 2, display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <LocalLibraryIcon />
-          <Typography variant='h6'>NextBlog</Typography>
-        </Box>
+        <Link href='/' style={{ textDecoration: 'none', color: 'inherit', textTransform: 'uppercase', fontWeight: 'bold', fontSize: '1rem' }}>
+          NextBlog
+        </Link>
         <IconButton>
           <CloseIcon />
         </IconButton>
@@ -91,8 +91,9 @@ const Navbar = ({ window }: Props) => {
               display: { xs: 'none', sm: 'flex' }
             }}
           >
-            <LocalLibraryIcon />
-            <Typography variant='h6'>NextBlog</Typography>
+            <Link href='/' style={{ textDecoration: 'none', color: 'inherit', textTransform: 'uppercase', fontWeight: 'bold', fontSize: '1.3rem' }}>
+              NextBlog
+            </Link>
           </Box>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map(item => (

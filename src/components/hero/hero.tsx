@@ -50,66 +50,64 @@ const data = [
 
 const Hero = () => {
   return (
-    <Box sx={{ width: '100%', height: '70vh' }}>
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={0}
-        slidesPerView={1}
-        // Navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-      >
-        {data.map(item => (
-          <SwiperSlide key={item.id}>
-            <Box sx={{ position: 'relative', height: '70vh' }}>
-              <Image
-                src={item.image}
-                alt={item.title}
-                layout='fill'
-                objectFit='contain'
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  backgroundColor: 'rgba(0, 0, 0, 0.6)'
-                }}
-              />
-              <Box
-                width={{ xs: '100%', sm: '50%' }}
-                sx={{
-                  position: 'relative',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#fff',
-                  padding: '20px',
-                  zIndex: '2'
-                }}
-              >
-                <Typography variant='h2' component='h2'>
-                  {item.title}
-                </Typography>
-                <Typography variant='body1' component='p'>
-                  {item.excerpt}
-                </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '20px' }}>
-                  <Avatar src={item.author.image} alt={item.author.name} />
-                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography>{item.author.name}</Typography>
-                    <Typography variant='caption'>
-                      {(new Date()).toLocaleDateString()}
-                    </Typography>
-                  </Box>
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={0}
+      slidesPerView={1}
+      // Navigation
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
+    >
+      {data.map(item => (
+        <SwiperSlide key={item.id}>
+          <Box sx={{ position: 'relative', height: '80vh', paddingY: '20px' }}>
+            <Image
+              src={item.image}
+              alt={item.title}
+              layout='fill'
+              objectFit='contain'
+            />
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.6)'
+              }}
+            />
+            <Box
+              width={{ xs: '80%', sm: '50%' }}
+              sx={{
+                position: 'relative',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: '#fff',
+                paddingX: '20px',
+                zIndex: '2'
+              }}
+            >
+              <Typography variant='h2' component='h2' sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {item.title}...
+              </Typography>
+              <Typography variant='body1' component='p'>
+                {item.excerpt}
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '20px' }}>
+                <Avatar src={item.author.image} alt={item.author.name} />
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <Typography>{item.author.name}</Typography>
+                  <Typography variant='caption'>
+                    {(new Date()).toLocaleDateString()}
+                  </Typography>
                 </Box>
               </Box>
             </Box>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Box>
+          </Box>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   )
 }
 
