@@ -1,10 +1,11 @@
 import { Avatar, Box, Button, Divider, Typography } from '@mui/material'
+import { format } from 'date-fns'
 import Image from 'next/image'
 
 const data = [
   { id: 1, name: 'Category 1' },
   { id: 2, name: 'Category 2' },
-  { id: 3, name: 'Category 3' },
+  { id: 3, name: 'Category 3' }
 ]
 
 const blogs = [
@@ -53,17 +54,15 @@ const Sidebar = () => {
   return (
     <>
       <Box
-        width={'30%'}
-        // sx={{
-        //   display: { xs: 'none', md: 'block' },
-        //   padding: '20px',
-        //   height: '100vh',
-        //   overflowY: 'auto',
-        //   position: 'sticky',
-        //   top: 0
-        // }}
+        sx={{
+          width: { xs: '100%', md: '30%' },
+        }}
       >
-        <Box position={'sticky'} top={'100px'} sx={{ transition: 'all 0.3s ease' }}>
+        <Box
+          position={'sticky'}
+          top={'100px'}
+          sx={{ transition: 'all 0.3s ease' }}
+        >
           <Box
             sx={{
               padding: '20px',
@@ -134,12 +133,23 @@ const Sidebar = () => {
                       <Typography variant='body1' sx={{ fontWeight: 'bold' }}>
                         {blog.title}
                       </Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', opacity: 0.8 }}>
-                        <Avatar sx={{ width: '45px', height: '45px' }} src={blog.author.image} alt={blog.author.name} />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '5px',
+                          opacity: 0.8
+                        }}
+                      >
+                        <Avatar
+                          sx={{ width: '45px', height: '45px' }}
+                          src={blog.author.image}
+                          alt={blog.author.name}
+                        />
                         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                           <Typography>{blog.author.name}</Typography>
                           <Typography variant='caption'>
-                            {(new Date()).toLocaleDateString()}
+                            {format(new Date(), 'dd, MMM, yyy')}
                           </Typography>
                         </Box>
                       </Box>

@@ -1,4 +1,5 @@
 import { Avatar, Box, Typography } from '@mui/material'
+import { format } from 'date-fns'
 import Image from 'next/image'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -60,7 +61,13 @@ const Hero = () => {
     >
       {data.map(item => (
         <SwiperSlide key={item.id}>
-          <Box sx={{ position: 'relative', height: '80vh', paddingY: '20px' }}>
+          <Box
+            sx={{
+              position: 'relative',
+              height: '80vh',
+              paddingY: { xs: '40px', md: '20px' }
+            }}
+          >
             <Image
               src={item.image}
               alt={item.title}
@@ -78,7 +85,7 @@ const Hero = () => {
               }}
             />
             <Box
-              width={{ xs: '80%', sm: '50%' }}
+              width={{ xs: '80%', md: '50%' }}
               sx={{
                 position: 'relative',
                 top: '50%',
@@ -88,18 +95,44 @@ const Hero = () => {
                 zIndex: '2'
               }}
             >
-              <Typography variant='h2' component='h2' sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {item.title}...
+              <Typography
+                sx={{
+                  fontSize: { xs: '30px', md: '60px' },
+                  lineHeight: '1.2',
+                  whiteSpace: { xs: 'nowrap', md: 'normal' },
+                  lineClamp: { xs: '1', md: '2' },
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }}
+                component='h2'
+              >
+                {item.title}
               </Typography>
-              <Typography variant='body1' component='p'>
+              <Typography
+                sx={{
+                  whiteSpace: { xs: 'nowrap', md: 'normal' },
+                  lineClamp: { xs: '1', md: '2' },
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }}
+                variant='body1'
+                component='p'
+              >
                 {item.excerpt}
               </Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '20px' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  marginTop: '20px'
+                }}
+              >
                 <Avatar src={item.author.image} alt={item.author.name} />
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <Typography>{item.author.name}</Typography>
                   <Typography variant='caption'>
-                    {(new Date()).toLocaleDateString()}
+                    {format(new Date(), 'dd, MMM, yyy')}
                   </Typography>
                 </Box>
               </Box>
