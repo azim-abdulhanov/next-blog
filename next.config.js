@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn.dummyjson.com']
+    domains: ['us-west-2.graphassets.com']
   }
 }
 

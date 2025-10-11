@@ -1,5 +1,6 @@
 import { request, gql } from 'graphql-request'
-import { BlogsType } from '../types/blogs'
+import { BlogsType } from '@/src/types/blogs'
+import { CategoriesType } from '@/src/types/categories'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT as string
 
@@ -12,6 +13,7 @@ export const BlogsService = {
           id
           slug
           title
+          createdAt
           image {
             url
           }
@@ -32,5 +34,46 @@ export const BlogsService = {
     const result = await request<{ blogs: BlogsType[] }>(graphqlAPI, query)
 
     return result.blogs
+  },
+
+  async getLatestBlog() {
+    const query = gql`
+      query GetLatestBlog {
+        blogs(last: 2) {
+          id
+          slug
+          title
+          createdAt
+          image {
+            url
+          }
+          author {
+            name
+            avatar {
+              url
+            }
+          }
+        }
+      }
+    `
+
+    const result = await request<{ blogs: BlogsType[] }>(graphqlAPI, query)
+
+    return result.blogs
+  },
+
+  async getCategories() {
+    const query = gql`
+      query GetCategories {
+        categories {
+          label
+          slug
+        }
+      }
+    `
+
+    const result = await request<{ categories: CategoriesType[] }>(graphqlAPI, query)
+
+    return result.categories
   }
 }

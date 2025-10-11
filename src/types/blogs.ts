@@ -3,6 +3,7 @@ export interface BlogsType {
   excerpt: string
   slug: string
   title: string
+  createdAt: string
   image: {
     url: string
   }

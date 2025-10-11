@@ -1,56 +1,9 @@
 import { Avatar, Box, Button, Divider, Typography } from '@mui/material'
 import { format } from 'date-fns'
 import Image from 'next/image'
+import { SidebarProps } from './sidebar.props'
 
-const data = [
-  { id: 1, name: 'Category 1' },
-  { id: 2, name: 'Category 2' },
-  { id: 3, name: 'Category 3' }
-]
-
-const blogs = [
-  {
-    id: 1,
-    image:
-      'https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp',
-    title: 'Essence Mascara Lash Princess',
-    excerpt:
-      'The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.',
-    author: {
-      name: 'John Doe',
-      image:
-        'https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp'
-    }
-  },
-  {
-    id: 2,
-    image:
-      'https://cdn.dummyjson.com/product-images/beauty/powder-canister/thumbnail.webp',
-    title: 'Powder Canister',
-    excerpt:
-      'The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.',
-    author: {
-      name: 'Jane Doe',
-      image:
-        'https://cdn.dummyjson.com/product-images/beauty/powder-canister/thumbnail.webp'
-    }
-  },
-  {
-    id: 3,
-    image:
-      'https://cdn.dummyjson.com/product-images/beauty/red-nail-polish/1.webp',
-    title: 'Red Nail Polish',
-    excerpt:
-      'The Red Nail Polish offers a rich and glossy red hue for vibrant and polished nails. With a quick-drying formula, it provides a salon-quality finish at home.',
-    author: {
-      name: 'Jane Doe',
-      image:
-        'https://cdn.dummyjson.com/product-images/beauty/red-nail-polish/1.webp'
-    }
-  }
-]
-
-const Sidebar = () => {
+const Sidebar = ({ latestBlogs, categories }: SidebarProps) => {
   return (
     <>
       <Box
@@ -79,8 +32,8 @@ const Sidebar = () => {
                 marginTop: '20px'
               }}
             >
-              {data.map(item => (
-                <Box key={item.id}>
+              {categories.map(item => (
+                <Box key={item.slug}>
                   <Button
                     fullWidth
                     sx={{
@@ -89,7 +42,7 @@ const Sidebar = () => {
                       paddingLeft: '20px'
                     }}
                   >
-                    <Typography variant='body1'>{item.name}</Typography>
+                    <Typography variant='body2'>{item.label}</Typography>
                   </Button>
                   <Divider />
                 </Box>
@@ -111,51 +64,51 @@ const Sidebar = () => {
                 marginTop: '20px'
               }}
             >
-              {blogs.map(blog => (
+              {latestBlogs.map(blog => (
                 <Box key={blog.id}>
                   <Box sx={{ display: 'flex', gap: '10px' }}>
                     <Image
-                      src={blog.image}
+                      src={blog.image.url}
                       alt={blog.title}
                       width={100}
                       height={100}
-                      style={{ borderRadius: '50%', marginRight: '10px' }}
+                      style={{ borderRadius: '50%', marginRight: '10px', objectFit: 'contain' }}
                     />
                     <Box
                       sx={{
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        gap: '10px',
+                        gap: '20px',
                         marginTop: '20px'
                       }}
                     >
-                      <Typography variant='body1' sx={{ fontWeight: 'bold' }}>
+                      <Typography variant='body2' sx={{ fontWeight: 'bold' }}>
                         {blog.title}
                       </Typography>
                       <Box
                         sx={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '5px',
+                          gap: '10px',
                           opacity: 0.8
                         }}
                       >
                         <Avatar
-                          sx={{ width: '45px', height: '45px' }}
-                          src={blog.author.image}
+                          sx={{ width: '40px', height: '40px' }}
+                          src={blog.author.avatar.url}
                           alt={blog.author.name}
                         />
                         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                          <Typography>{blog.author.name}</Typography>
+                          <Typography variant='body2'>{blog.author.name}</Typography>
                           <Typography variant='caption'>
-                            {format(new Date(), 'dd, MMM, yyy')}
+                            {format(blog.createdAt, 'dd, MMM, yyy')}
                           </Typography>
                         </Box>
                       </Box>
                     </Box>
                   </Box>
-                  <Divider sx={{ marginTop: '10px' }} />
+                  <Divider sx={{ marginTop: '20px' }} />
                 </Box>
               ))}
             </Box>

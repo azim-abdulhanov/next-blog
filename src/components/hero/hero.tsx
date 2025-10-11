@@ -6,60 +6,17 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { HeroProps } from './hero.props'
 
-const data = [
-  {
-    id: 1,
-    image:
-      'https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp',
-    title: 'Essence Mascara Lash Princess',
-    excerpt:
-      'The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.',
-    author: {
-      name: 'John Doe',
-      image:
-        'https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp'
-    }
-  },
-  {
-    id: 2,
-    image:
-      'https://cdn.dummyjson.com/product-images/beauty/powder-canister/thumbnail.webp',
-    title: 'Powder Canister',
-    excerpt:
-      'The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.',
-    author: {
-      name: 'Jane Doe',
-      image:
-        'https://cdn.dummyjson.com/product-images/beauty/powder-canister/thumbnail.webp'
-    }
-  },
-  {
-    id: 3,
-    image:
-      'https://cdn.dummyjson.com/product-images/beauty/red-nail-polish/1.webp',
-    title: 'Red Nail Polish',
-    excerpt:
-      'The Red Nail Polish offers a rich and glossy red hue for vibrant and polished nails. With a quick-drying formula, it provides a salon-quality finish at home.',
-    author: {
-      name: 'Jane Doe',
-      image:
-        'https://cdn.dummyjson.com/product-images/beauty/red-nail-polish/1.webp'
-    }
-  }
-]
-
-const Hero = () => {
+const Hero = ({ blogs }: HeroProps) => {
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={0}
       slidesPerView={1}
-      // Navigation
-      pagination={{ clickable: true }}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
     >
-      {data.map(item => (
+      {blogs.map(item => (
         <SwiperSlide key={item.id}>
           <Box
             sx={{
@@ -69,7 +26,7 @@ const Hero = () => {
             }}
           >
             <Image
-              src={item.image}
+              src={item.image.url}
               alt={item.title}
               layout='fill'
               objectFit='contain'
@@ -97,14 +54,15 @@ const Hero = () => {
             >
               <Typography
                 sx={{
-                  fontSize: { xs: '30px', md: '60px' },
+                  fontSize: { xs: '30px', sm: '40px', md: '50px' },
                   lineHeight: '1.2',
                   whiteSpace: { xs: 'nowrap', md: 'normal' },
-                  lineClamp: { xs: '1', md: '2' },
+                  lineClamp: { xs: '1', sm: '2', md: '3' },
                   overflow: 'hidden',
-                  textOverflow: 'ellipsis'
+                  textOverflow: 'ellipsis',
+                  marginBottom: '15px'
                 }}
-                component='h2'
+                component='h1'
               >
                 {item.title}
               </Typography>
@@ -113,7 +71,9 @@ const Hero = () => {
                   whiteSpace: { xs: 'nowrap', md: 'normal' },
                   lineClamp: { xs: '1', md: '2' },
                   overflow: 'hidden',
-                  textOverflow: 'ellipsis'
+                  textOverflow: 'ellipsis',
+                  color: '#ccc',
+                  marginBottom: '20px'
                 }}
                 variant='body1'
                 component='p'
@@ -124,15 +84,15 @@ const Hero = () => {
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '5px',
+                  gap: '10px',
                   marginTop: '20px'
                 }}
               >
-                <Avatar src={item.author.image} alt={item.author.name} />
+                <Avatar src={item.author.avatar.url} alt={item.author.name} />
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <Typography>{item.author.name}</Typography>
                   <Typography variant='caption'>
-                    {format(new Date(), 'dd, MMM, yyy')}
+                    {format(item.createdAt, 'dd, MMM, yyy')}
                   </Typography>
                 </Box>
               </Box>
