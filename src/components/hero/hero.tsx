@@ -7,6 +7,7 @@ import 'swiper/css/pagination'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { HeroProps } from './hero.props'
+import { calculateEstimatedTimeToRead } from '@/src/helpers/time-format'
 
 const Hero = ({ blogs }: HeroProps) => {
   return (
@@ -92,7 +93,8 @@ const Hero = ({ blogs }: HeroProps) => {
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <Typography>{item.author.name}</Typography>
                   <Typography variant='caption'>
-                    {format(item.createdAt, 'dd, MMM, yyy')}
+                    {format(item.createdAt, 'dd, MMM, yyy')} &#x2022; {' '}
+                    {calculateEstimatedTimeToRead(item.description.text)} min read
                   </Typography>
                 </Box>
               </Box>
